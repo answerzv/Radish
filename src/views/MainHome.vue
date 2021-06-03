@@ -1,0 +1,273 @@
+<template>
+   <div class="home-left">
+        
+        <div class="layout">
+        <Row type="flex">
+            <i-col span="5" class="layout-menu-left">
+                <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
+                    
+                    <div class="layout-logo-left">
+                         <Icon class="icoMig"></Icon>
+                         萝卜多后台管理系统
+                        </div>
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-navigate"></Icon>
+                        信息管理
+                        </template>
+                        <Menu-item name="1-1">公司列表</Menu-item>
+                        <Menu-item name="1-2">职位列表</Menu-item>
+                        
+                    </Submenu>
+                    <Submenu name="2">
+                        <template slot="title">
+                            <Icon type="ios-keypad"></Icon>
+                            ARticle
+                        </template>
+                        <Menu-item name="2-1">Article列表</Menu-item>
+                       
+                    </Submenu>
+                    <Submenu name="3">
+                        <template slot="title">
+                            <Icon type="ios-analytics"></Icon>
+                            人才管理
+                        </template>
+                        <Menu-item name="3-1">候选人列表</Menu-item>
+                        <Menu-item name="3-2">人才列表</Menu-item>
+                    </Submenu>
+                    <Submenu name="4">
+                        <template slot="title">
+                            <Icon type="ios-analytics"></Icon>
+                            推荐管理
+                        </template>
+                        <Menu-item name="4-1">推荐人管理</Menu-item>
+                        <Menu-item name="4-2">推荐管理测试best</Menu-item>
+                    </Submenu>
+                    <Submenu name="5">
+                        <template slot="title">
+                            <Icon type="ios-analytics"></Icon>
+                            后台管理
+                        </template>
+                        <Menu-item name="5-1">模块管理</Menu-item>
+                        <Menu-item name="5-2">角色管理</Menu-item>
+                        <Menu-item name="5-3">密码管理</Menu-item>
+                        <Menu-item name="5-4">账户管理</Menu-item>
+                    </Submenu>
+                   
+                </Menu>
+            </i-col>
+            <div class="main-view">
+               <div class="_nav"></div>
+               <!-- 子路由出口 -->
+               <div class="view">
+                   <router-view></router-view>
+               </div>
+               
+            </div>
+            <!-- <i-col :span="spanRight">
+                <div class="layout-header">
+                    <i-button type="text" @click="toggleClick">
+                        <Icon type="navicon" size="32"></Icon>
+                    </i-button>
+                </div>
+                <div class="layout-breadcrumb">
+                    <Breadcrumb>
+                        <Breadcrumb-item href="#">首页</Breadcrumb-item>
+                        <Breadcrumb-item href="#">应用中心</Breadcrumb-item>
+                        <Breadcrumb-item>某应用</Breadcrumb-item>
+                    </Breadcrumb>
+                </div>
+               <div class="layout-content"> 
+                    <div class="layout-content-main">内容区域</div>
+                </div>
+                <div class="layout-copy">
+                    2011-2016 &copy; TalkingData
+                </div> 
+            </i-col> -->
+        </Row>
+    </div>
+        
+   </div>
+</template>
+
+<script>
+export default {
+        data () {
+            return {
+                spanLeft: 5,
+                spanRight: 19
+            }
+        },
+        computed: {
+            iconSize () {
+                return this.spanLeft === 5 ? 14 : 24;
+            }
+        },
+        methods: {
+            toggleClick () {
+                if (this.spanLeft === 5) {
+                    this.spanLeft = 2;
+                    this.spanRight = 22;
+                } else {
+                    this.spanLeft = 5;
+                    this.spanRight = 19;
+                }
+            }
+        }
+    }
+
+</script>
+<style lang='less' scoped>
+
+    .layout-logo-left{
+        font-size: 17px;
+        line-height: 33px;
+        color: white;
+        width: 250px;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        box-sizing: border-box;
+        padding-right: 22px;
+    }
+    .main-view{
+        max-width: calc(100% - 245px);
+        
+    }
+
+    .icoMig{
+        background:url('../assets/image/lb.png');
+        width: 22px;
+        height: 23px;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin-bottom: 6px;
+    }
+
+    ._nav{
+        width: 100%;
+        height: 50px;
+        background:#fff;
+    }
+
+    .view{
+        display: block;
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+        overflow: auto;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 20px;
+        background:#f5f5f5;
+    }
+
+    .layout{
+        border: 1px solid #d7dde4;
+        background: #f5f7f9;
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        }
+
+    .layout-breadcrumb{
+        padding: 10px 15px 0;
+    }
+
+        
+    .layout-content{
+        min-height: 200px;
+        margin: 15px;
+        overflow: hidden;
+        // background: #fff;
+        border-radius: 4px;
+        
+    }
+    .layout-content-main{
+        padding: 10px;
+    }
+    .layout-copy{
+        text-align: center;
+        padding: 10px 0 20px;
+        color: #9ea7b4;
+    }
+    
+    .layout-header{
+        height: 60px;
+        // background: #fff;
+        box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    }
+    .layout-logo-left{
+        width: 90%;
+        height: 30px;
+        
+        border-radius: 3px;
+        margin: 15px auto;
+    }
+    .layout-ceiling-main a{
+        color: #9ba7b5;
+    }
+    .layout-hide-text .layout-text{
+        display: none;
+    }
+    .ivu-col{
+        transition: width .2s ease-in-out;
+    }
+
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu), .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):hover, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu), .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu):hover {
+        background: none;
+    }
+
+
+
+    .ivu-menu-dark{
+        background: none;
+    }
+
+    .layout{
+        background: none;
+    }
+
+    .ivu-row-flex {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-height: 100vh;
+    }
+
+    .ivu-col-span-5 {
+        display: block;
+        width: 245px;
+    }
+
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
+        background: none;
+    }
+
+    /deep/.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title {
+        background: none;
+    }
+
+    .ivu-menu-submenu-title{
+        background: none;
+    }
+
+    /deep/.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+        border-right: none;
+        color: #fff;
+        background: #feae45!important;;
+    }
+
+
+    /deep/.ivu-menu-submenu-title{
+        background: none  !important;
+    }
+
+
+
+
+
+
+</style>
