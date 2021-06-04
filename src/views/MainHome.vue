@@ -1,75 +1,31 @@
 <template>
    <div class="home-left">
-        
+
         <div class="layout">
         <Row type="flex">
             <i-col span="5" class="layout-menu-left">
-                <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
+                <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']"  router>
                     
                     <div class="layout-logo-left">
                          <Icon class="icoMig"></Icon>
                          萝卜多后台管理系统
                         </div>
-                    <Submenu name="1">
+                    <Submenu 
+                    :name="item.name" v-for=" item in menulist"  :key="item.name" >
                         <template slot="title">
                             <Icon type="ios-navigate"></Icon>
-                        信息管理
+                        {{item.title}}
                         </template>
-                        <Menu-item name="1-1">公司列表</Menu-item>
-                        <Menu-item name="1-2">职位列表</Menu-item>
-                        
+                          <div v-for="itemi in item.children" :key="itemi.name" >
+                             <Menu-item :name="itemi.name" v-on:click.native="saveNavState(itemi.path)" :index="'/' + itemi.path">{{itemi.title}}</Menu-item>
+                          </div>
+
                     </Submenu>
-                    <Submenu name="2">
-                        <template slot="title">
-                            <Icon type="ios-keypad"></Icon>
-                            ARticle
-                        </template>
-                        <Menu-item name="2-1">Article列表</Menu-item>
-                       
-                    </Submenu>
-                    <Submenu name="3">
-                        <template slot="title">
-                            <Icon type="ios-analytics"></Icon>
-                            人才管理
-                        </template>
-                        <Menu-item name="3-1">候选人列表</Menu-item>
-                        <Menu-item name="3-2">人才列表</Menu-item>
-                    </Submenu>
-                    <Submenu name="4">
-                        <template slot="title">
-                            <Icon type="ios-analytics"></Icon>
-                            推荐管理
-                        </template>
-                        <Menu-item name="4-1">推荐人管理</Menu-item>
-                        <Menu-item name="4-2">推荐管理测试best</Menu-item>
-                    </Submenu>
-                    <Submenu name="5">
-                        <template slot="title">
-                            <Icon type="ios-analytics"></Icon>
-                            后台管理
-                        </template>
-                        <Menu-item name="5-1">模块管理</Menu-item>
-                        <Menu-item name="5-2">角色管理</Menu-item>
-                        <Menu-item name="5-3">密码管理</Menu-item>
-                        <Menu-item name="5-4">账户管理</Menu-item>
-                    </Submenu>
-                   
+                 
                 </Menu>
             </i-col>
-            <div class="main-view">
-               <div class="_nav"></div>
-               <!-- 子路由出口 -->
-               <div class="view">
-                   <router-view></router-view>
-               </div>
-               
-            </div>
-            <!-- <i-col :span="spanRight">
-                <div class="layout-header">
-                    <i-button type="text" @click="toggleClick">
-                        <Icon type="navicon" size="32"></Icon>
-                    </i-button>
-                </div>
+            <i-col span="21" class="main-view">
+                <div class="layout-header"></div>
                 <div class="layout-breadcrumb">
                     <Breadcrumb>
                         <Breadcrumb-item href="#">首页</Breadcrumb-item>
@@ -77,13 +33,15 @@
                         <Breadcrumb-item>某应用</Breadcrumb-item>
                     </Breadcrumb>
                 </div>
-               <div class="layout-content"> 
-                    <div class="layout-content-main">内容区域</div>
+                <div class="layout-content">
+                    
+                    <router-view class="layout-content-main"></router-view>
                 </div>
                 <div class="layout-copy">
                     2011-2016 &copy; TalkingData
-                </div> 
-            </i-col> -->
+                </div>
+            </i-col>
+            
         </Row>
     </div>
         
@@ -95,9 +53,59 @@ export default {
         data () {
             return {
                 spanLeft: 5,
-                spanRight: 19
+                spanRight: 19,
+
+ 
+                menulist:[
+                    { 
+                        name:1,title:'信息管理',
+                        children:[
+                            { name:2,title:'公司列表',path:'CoList'},
+                            { name:3,title:'公司职位',path: 'CoPosition' }
+                        ]
+                    },
+                    { 
+                        name:7,title:'ARticle',
+                        children:[
+                            { name:8,title:'Article列表',path:'Article'},
+                           ]
+                    },
+                     { 
+                        name:4,title:'人才管理',
+                        children:[
+                            { name:5,title:'候选人列表',path:'Candidate'},
+                            { name:6,title:'人才列表',path:'Talents' }
+                        ]
+                    },
+                    { 
+                        name:10,title:'推荐管理',
+                        children:[
+                            { name:11,title:'推荐人管理',path:'Referrer'},
+                            { name:12,title:'推荐测试test', path:'ReferTste' }
+                        ]
+                    },
+                    { 
+                        name:13,title:'后台管理',
+                        children:[
+                            { name:14,title:'模块列表', path:'Module'},
+                            { name:15,title:'角色列表', path:'Role'},
+                            { name:16,title:'密码列表', path:'Password'},
+                            { name:17,title:'账户列表', path:'Account'},  
+                        ]
+                    }            
+                ],
+
+                acpast:''
+        
             }
         },
+
+        //生命周期 - 创建完成（访问当前this实例）
+        created() {
+            // 声明周期函数
+            this.acpast = window.sessionStorage.getItem("everc");
+        },
+
         computed: {
             iconSize () {
                 return this.spanLeft === 5 ? 14 : 24;
@@ -112,7 +120,16 @@ export default {
                     this.spanLeft = 5;
                     this.spanRight = 19;
                 }
+            },
+
+            saveNavState(ever){
+                console.log(ever)
+                /* 嵌套路由必须加前缀 */
+                this.$router.push('/home/'+ ever)
+                
+
             }
+
         }
     }
 
@@ -132,7 +149,7 @@ export default {
     }
     .main-view{
         max-width: calc(100% - 245px);
-        
+        background:#f5f5f5;
     }
 
     .icoMig{
@@ -141,16 +158,16 @@ export default {
         height: 23px;
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
     }
 
-    ._nav{
+    .layout-header{
         width: 100%;
         height: 50px;
         background:#fff;
     }
 
-    .view{
+    .layout-content{
         display: block;
         -webkit-box-flex: 1;
         -ms-flex: 1;
@@ -161,7 +178,7 @@ export default {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         padding: 20px;
-        background:#f5f5f5;
+        background:#fff;
     }
 
     .layout{
