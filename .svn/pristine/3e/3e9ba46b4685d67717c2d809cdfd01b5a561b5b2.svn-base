@@ -1,0 +1,39 @@
+/* 全局样式 */
+
+
+/* 具备默认样式*/
+html,
+body,
+#app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+/* 页面背景图片 */
+.total {
+    background:url(../../assets/image/bg.jpg)no-repeat center;
+    background-size: cover;
+    overflow: hidden;
+    min-height: 100vh;
+    
+}
