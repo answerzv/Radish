@@ -21,7 +21,7 @@
             type="password" 
             v-model="formInline.password" 
             placeholder="Password">
-                <Icon type="ios-locked-outline" slot="prepend"></Icon>
+                <Icon type="ios-locked-outline" slot="prepend">123</Icon>
             </Input>
         </Form-item>
         <Form-item>
@@ -77,7 +77,7 @@ export default {
                 console.log(date)        /* 引入一个函数库测试时间戳的转换 */
 
                 if(this.lastTime == 0 || (now - this.lastTime) > i){
-                    console.log(now - this.lastTime)
+                
                     /* 实时赋值 */
                     this.lastTime =now
                     
