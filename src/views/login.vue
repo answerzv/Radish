@@ -32,7 +32,6 @@
 </template>
 <script src="jutils.min.js"></script>
 
-
 <script>
 import jutils from 'jutils-src'
 
@@ -48,7 +47,6 @@ export default {
                     password: ''
                 },
                 lastTime: 0,
-
                 ruleInline: {
                     user: [
                         { required: true, message: '请填写用户名', trigger: 'blur' }
@@ -100,10 +98,7 @@ export default {
 
                 }
 
-                // axios.get('/api/a/company/search').then(function(data){
-                //     console.log(data)
-                // })
-                
+            
                 
             },
 
