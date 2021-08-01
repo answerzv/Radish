@@ -97,11 +97,7 @@ export default {
                     console.log('小于3000毫秒不触发')
                 }
 
-            
-                
             },
-
-            
             
         }
     }
