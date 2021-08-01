@@ -88,16 +88,13 @@ export default {
                             
                         })
                     } else {
-                       
                         this.$Message.error('表单验证失败!');
-                        
+            
                     }
 
-                    
                 })
                 }else{
                     console.log('小于3000毫秒不触发')
-
                 }
 
             
