@@ -61,6 +61,7 @@ export default {
         methods: {
             handleSubmit(name,i) {
               
+              
                 // console.log(i)
                 /* 引用最新时间戳内置对象 */
                 let now = new Date().valueOf();
@@ -72,6 +73,7 @@ export default {
                     console.log(now - this.lastTime)
                     /* 实时赋值 */
                     this.lastTime =now
+
                     
 
                     this.$refs[name].validate((valid) => {
