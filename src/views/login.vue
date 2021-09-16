@@ -35,9 +35,9 @@
 <script>
 import jutils from 'jutils-src'
 
+
 import axios from 'axios'
 import qs from 'qs'
-
 
 export default {
         data () {
@@ -61,7 +61,7 @@ export default {
         methods: {
             handleSubmit(name,i) {
               
-              
+
                 // console.log(i)
                 /* 引用最新时间戳内置对象 */
                 let now = new Date().valueOf();
